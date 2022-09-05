@@ -15,7 +15,7 @@ pipeline {
       printPostContent: true,
       silentResponse: false,
       regexpFilterText: '$ref',
-      regexpFilterExpression: '^(refs/heads/dev|refs/heads/feature/.+)$'
+      regexpFilterExpression: '^(refs/heads/dev)$'
     )
   }
 
@@ -25,10 +25,5 @@ pipeline {
             checkout([$class: 'GitSCM', branches: [[name: '*/dev']], extensions: [], userRemoteConfigs: [[credentialsId: '6ce24eea-09cb-4185-b631-5c288c77f2a1', url: 'git@github.com:thititongumpun/test.git']]])
           }
         }
-      stage('echo') {
-      steps {
-        sh "echo $ref"
-      }
-    }
     }
 }
